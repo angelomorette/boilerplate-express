@@ -1,5 +1,13 @@
 {
 	"name": "fcc-learn-node-with-express",
+	"author": "Angelo",
+	"description": "Projeto para entender o uso básico do Node e o framework Express",
+	"keywords": [
+		"freecodecamp",
+		"npm",
+		"node",
+		"express"
+	],
 	"version": "0.1.0",
 	"dependencies": {
 		"express": "^4.14.0",
