@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+require('dotenv').config();
 
 // Conhecer o console do Node
 console.log("Hello World");
@@ -30,7 +31,21 @@ app.get('/', (req, res) => {
     res.sendFile(absolutePath);
 });
 
-
+// API simples 
+// Usando arquivo .env
+app.get('/json', (req, res) => {
+    
+    // process.env.NOMEVAL -- variavel global do node usada para acessar as vaiaveis em .env 
+    if (process.env.MESSAGE_STYLE == 'uppercase'){
+        res.json({
+            "message": "HELLO JSON"
+        });
+    } else {
+        res.json({
+            "message": "Hello json"
+        });
+    }
+});
 
 
 
