@@ -1,6 +1,14 @@
 var express = require('express');
 var app = express();
 require('dotenv').config();
+var bodyParser = require('body-parser');
+
+// middleware para manipular dados urlencoded 
+//Ao usar extended=false, os valores podem ser apenas strings ou arrays. 
+//false - biblioteca  querystring.  
+//true - biblioteca qs
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // Middleware ao nível de root
 app.use((req, res, next) => {
@@ -68,7 +76,7 @@ app.get('/:word/echo', (req, res) => {
     const word = req.params.word
     res.json({
         "echo": word
-    })
+    });
 });
 
 // Obter a entrada do parâmetro da consulta do client
@@ -81,12 +89,23 @@ app.get('/:word/echo', (req, res) => {
     });
  });
 
+// Usar o body-parser para analisar solicitações de POST
+/* app.post('/name', (req, res) => {
+    const name = req.body;
+    res.json({
+        "first": name.first,
+        "last": name.last
+    });
+}) */;
 
 
-
-
-
-
+// Obter dados de solicitações de POST
+app.post('/name', (req, res) => {
+    const name = req.body;
+    res.json({
+        "name": `${name.first} ${name.last}`
+    });
+})
 
 
 
