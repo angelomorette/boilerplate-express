@@ -2,6 +2,22 @@ var express = require('express');
 var app = express();
 require('dotenv').config();
 
+// Middleware ao nível de root
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+})
+
+// Encadear middleware para criar um servidor de tempo
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res) => {
+    res.json({
+        "time": req.time
+    })
+});
+
 // Conhecer o console do Node
 console.log("Hello World");
 
