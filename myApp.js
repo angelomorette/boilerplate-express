@@ -63,11 +63,23 @@ app.get('/json', (req, res) => {
     }
 });
 
+// Obter a entrada do parâmetro de roteamento do client
+app.get('/:word/echo', (req, res) => {
+    const word = req.params.word
+    res.json({
+        "echo": word
+    })
+});
 
+// Obter a entrada do parâmetro da consulta do client
+ app.get('/name', (req, res) => {
+    const firtname = req.query.first;
+    const lastname = req.query.last;
 
-
-
- 
+    res.json({
+        "name": `${firtname} ${lastname}`
+    });
+ });
 
 
 
